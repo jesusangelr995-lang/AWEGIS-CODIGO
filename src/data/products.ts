@@ -1,0 +1,88 @@
+import { Product } from '../types';
+
+export const PRODUCTS: Product[] = [
+  {
+    id: 'enchufe-inteligente',
+    name: 'Enchufe Inteligente Aegis',
+    categoryTag: 'CONFORT Y ENERGÍA',
+    description: 'Control remoto de electrodomésticos y monitorización de consumo eléctrico en tiempo real.',
+    price: 30.00,
+    image: 'plug',
+    features: ['Monitor de consumo en kWh', 'Programación horaria', 'Compatible con asistentes de voz'],
+  },
+  {
+    id: 'cerradura-inteligente',
+    name: 'Cerradura Inteligente Aegis',
+    categoryTag: 'SEGURIDAD AVANZADA',
+    description: 'Huella digital, código PIN, tarjeta RFID, llave mecánica y accesos temporales desde la app.',
+    price: 220.00,
+    image: 'lock',
+    features: ['Huella digital biométrica', 'Teclado táctil PIN antiespía', 'Tarjetas RFID contactless', 'Llave física de emergencia'],
+  },
+  {
+    id: 'termostato-inteligente',
+    name: 'Termostato Inteligente Aegis',
+    categoryTag: 'CLIMATIZACIÓN',
+    description: 'Optimización automática de la temperatura para lograr confort absoluto y ahorro energético.',
+    price: 40.00,
+    image: 'thermostat',
+    features: ['Control PID de precisión', 'Detección de ventanas abiertas', 'Ahorro de hasta el 32% en climatización'],
+  },
+  {
+    id: 'camara-ip',
+    name: 'Cámara IP de Seguridad Aegis 2K',
+    categoryTag: 'VIGILANCIA Y VISIÓN NOCTURNA',
+    description: 'Resolución 2K QHD, visión nocturna en color, rotación 360°, audio bidireccional y detección IA de personas.',
+    price: 49.99,
+    image: 'camera',
+    features: ['Resolución 2K QHD (1296p)', 'Visión nocturna a color', 'Rotación 360° Pan & Tilt', 'Detección IA de personas y mascotas'],
+  },
+  {
+    id: 'foco-inteligente',
+    name: 'Foco Inteligente LED Aegis RGB+W',
+    categoryTag: 'ILUMINACIÓN Y CONFORT',
+    description: '16 millones de colores, blancos cálidos a fríos regulables, sincronización musical y control por voz.',
+    price: 14.99,
+    image: 'bulb',
+    features: ['16 millones de colores RGB', 'Casquillo estándar E27 / 850 lm', 'Ahorro energético A+', 'Sincronización con rutinas Aegis'],
+  },
+  {
+    id: 'sensor-apertura',
+    name: 'Sensor de Apertura Puertas y Ventanas Aegis',
+    categoryTag: 'SEGURIDAD PERIMETRAL',
+    description: 'Detección magnética instantánea al abrir puertas o ventanas con alerta inmediata a tu smartphone.',
+    price: 19.99,
+    image: 'door_sensor',
+    features: ['Aviso instantáneo push & SMS', 'Batería de larga duración (2 años)', 'Registro histórico de accesos', 'Fácil fijación adhesiva 3M'],
+  },
+  {
+    id: 'sensor-inundacion',
+    name: 'Sensor de Inundación y Fugas Aegis',
+    categoryTag: 'PREVENCIÓN DE DAÑOS',
+    description: 'Sondas de contacto de alta sensibilidad para detectar escapes de agua en cocinas, baños o cuartos de lavado.',
+    price: 24.99,
+    image: 'water_sensor',
+    features: ['Sondas de platino sumergibles', 'Alarma acústica 85 dB integrada', 'Alerta en tiempo real al móvil', 'Resistencia al agua IP67'],
+  },
+  {
+    id: 'sensor-humo',
+    name: 'Sensor de Humo y Gas Inteligente Aegis',
+    categoryTag: 'SEGURIDAD CONTRA INCENDIOS',
+    description: 'Sensor fotoeléctrico dual de monóxido, humo y gases con sirena de emergencia y corte automático.',
+    price: 32.00,
+    image: 'smoke_sensor',
+    features: ['Sensor fotoeléctrico de alta precisión', 'Sirena potente 90 dB', 'Autocomprobación periódica', 'Notificación prioritaria 24/7'],
+  },
+  {
+    id: 'robot-aspirador',
+    name: 'Robot Aspirador Aegis Clean Pro',
+    categoryTag: 'LIMPIEZA AUTOMATIZADA',
+    description: 'Navegación láser LiDAR, succión 4000 Pa, mopa fregadora y arranque sincronizado con la rutina «Salir de casa».',
+    price: 199.00,
+    image: 'vacuum',
+    features: ['Navegación láser LiDAR 360°', 'Potencia de succión 4000 Pa', 'Depósito mixto polvo y agua', 'Sincronizado con rutinas Aegis'],
+  },
+];
+
+export const INSTAGRAM_URL = 'https://www.instagram.com/security_t_aegis?stkn=aWtxeWdnM2ZycXo=';
+export const TIKTOK_URL = 'https://www.tiktok.com';

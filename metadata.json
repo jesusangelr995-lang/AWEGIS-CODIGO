@@ -1,0 +1,6 @@
+{
+  "name": "AEGIS - Domótica y Seguridad Inteligente",
+  "description": "Tu hogar inteligente en una sola app. Control centralizado de vivienda, domótica certificada, seguridad y prevención.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
