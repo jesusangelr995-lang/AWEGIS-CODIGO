@@ -124,6 +124,10 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     }
 
     if (mode === 'reset') {
+      if (!email.trim() || !email.includes('@')) {
+        setErrorMsg('Por favor, indica tu correo electrónico asociado.');
+        return;
+      }
       if (password.length < 6) {
         setErrorMsg('La contraseña debe tener al menos 6 caracteres.');
         return;
@@ -133,7 +137,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         return;
       }
       setLoading(true);
-      const res = await updateUserPassword(password);
+      const res = await updateUserPassword(password, email);
       setLoading(false);
       if (res.success) {
         setSuccessMsg('¡Contraseña actualizada con éxito! Ahora puedes iniciar sesión con tu nueva clave.');
@@ -258,9 +262,32 @@ export const AuthModal: React.FC<AuthModalProps> = ({
           )}
 
           {successMsg && (
-            <div className="mb-4 p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs sm:text-sm flex items-start gap-2.5 animate-fadeIn">
-              <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" />
-              <span>{successMsg}</span>
+            <div className="mb-4 space-y-3">
+              <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs sm:text-sm flex items-start gap-2.5 animate-fadeIn">
+                <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" />
+                <span>{successMsg}</span>
+              </div>
+              {mode === 'forgot' && (
+                <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-800 dark:text-amber-200 text-xs space-y-2 animate-fadeIn">
+                  <div className="flex items-center gap-1.5 font-bold">
+                    <AlertCircle className="w-4 h-4 shrink-0 text-amber-500" />
+                    <span>¿Por qué no aparece el correo en tu bandeja?</span>
+                  </div>
+                  <ul className="text-[11px] space-y-1 list-disc list-inside leading-relaxed opacity-90">
+                    <li>Revisa tu carpeta de <strong>SPAM o Correo no deseado</strong> (los servidores de correo suelen clasificar a Supabase allí).</li>
+                    <li>Supabase limita los envíos a un máximo de 3 correos por hora en su servidor gratuito.</li>
+                    <li>Si tu cuenta se creó con Google o aún no tenía contraseña registrada.</li>
+                  </ul>
+                  <button
+                    type="button"
+                    onClick={() => handleSwitchMode('reset')}
+                    className="w-full mt-1.5 py-2 px-3 rounded-xl bg-[#009fe3] hover:bg-[#0088c4] active:scale-95 text-white font-bold text-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm"
+                  >
+                    <KeyRound className="w-3.5 h-3.5" />
+                    <span>⚡ Restablecer contraseña directamente aquí</span>
+                  </button>
+                </div>
+              )}
             </div>
           )}
 
@@ -332,23 +359,38 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               </div>
             )}
 
-            {/* Email (login, register, forgot) */}
-            {mode !== 'reset' && (
-              <div>
-                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
-                  Correo Electrónico
-                </label>
-                <div className="relative">
-                  <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="tu@correo.com"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#009fe3]"
-                  />
-                </div>
+            {/* Email (login, register, forgot, reset) */}
+            <div>
+              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
+                {mode === 'reset' ? 'Correo de tu Cuenta' : 'Correo Electrónico'}
+              </label>
+              <div className="relative">
+                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="tu@correo.com"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#009fe3]"
+                />
+              </div>
+            </div>
+
+            {/* Direct reset shortcut if user is in forgot mode */}
+            {mode === 'forgot' && !successMsg && (
+              <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 text-xs flex items-center justify-between gap-2">
+                <span className="text-[11px] text-slate-500 dark:text-slate-400">
+                  ¿Prefieres no esperar al correo?
+                </span>
+                <button
+                  type="button"
+                  onClick={() => handleSwitchMode('reset')}
+                  className="text-xs font-bold text-[#009fe3] hover:underline cursor-pointer flex items-center gap-1 shrink-0"
+                >
+                  <KeyRound className="w-3.5 h-3.5" />
+                  <span>Cambiar clave ahora →</span>
+                </button>
               </div>
             )}
 
